@@ -1,0 +1,26 @@
+diff --git a/unistd.in.h b/unistd.in.h
+index b4a3f5b..dd0d2c2 100644
+--- a/unistd.in.h
++++ b/unistd.in.h
+@@ -125,7 +125,11 @@
+ 
+ /* Get getopt(), optarg, optind, opterr, optopt.
+    But avoid namespace pollution on glibc systems.  */
+-#if @GNULIB_UNISTD_H_GETOPT@ && !defined __GLIBC__ && !defined _GL_SYSTEM_GETOPT
++/* Also, don't include <getopt.h> inside libgettextpo, because we use
++   the getopt module only in gettext-tools/gnulib-lib/, not in
++   gettext-tools/libgettextpo/, but there is only a single
++   GNULIB_UNISTD_H_GETOPT variable for both.  */
++#if @GNULIB_UNISTD_H_GETOPT@ && !defined GTPO_CONFIG_H && !defined __GLIBC__ && !defined _GL_SYSTEM_GETOPT
+ # define __need_getopt
+ # include <getopt.h>
+ #endif
+@@ -402,7 +406,7 @@ _GL_WARN_ON_USE (dup3, "dup3 is unportable - "
+    "VARIABLE=VALUE", terminated with a NULL.  */
+ #  if defined __APPLE__ && defined __MACH__
+ #   include <TargetConditionals.h>
+-#   if !defined TARGET_OS_IPHONE && !defined TARGET_IPHONE_SIMULATOR
++#   if !TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
+ #    define _GL_USE_CRT_EXTERNS
+ #   endif
+ #  endif
