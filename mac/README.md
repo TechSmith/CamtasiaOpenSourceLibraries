@@ -26,6 +26,18 @@ make
 
 - The compiled libraries will be in pango/.libs
 
+- To rebuild the makefile after editing the configure.ac or makefile.am files run 
+
+	```
+./autogen.sh
+make
+	```
+	
+- To install the required dependandies for pango 1.36.8 you can run 
+	```
+brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/d4e4ea84da725cd379c0ed8249838be59c8cc4ac/Formula/pango.rb
+	```
+
 ### libintl
 - Download gettext source code
 - Run the following commands
