@@ -19,21 +19,33 @@ The compiled libraries will be in
 - Download Pango source code
 - Run the following commands
 
-	```
+```
 ./configure
 make
-	```
+```
 
 - The compiled libraries will be in pango/.libs
+
+- To rebuild the makefile after editing the configure.ac or makefile.am files run 
+
+```
+./autogen.sh
+make
+```
+	
+- To install the required dependandies for pango 1.36.8 you can run 
+```
+brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/d4e4ea84da725cd379c0ed8249838be59c8cc4ac/Formula/pango.rb
+```
 
 ### libintl
 - Download gettext source code
 - Run the following commands
 
-	```
+```
 ./configure
 make
-	```
+```
 The libintl library will be in gettext-runtime/intl/.libs/
 
 ### glib
@@ -46,9 +58,9 @@ Next, you'll want to make a zip of the source code with the changes that you wan
 - Zip up the glib source code (into something like glibModified.zip)
 - (Optional) Calculate the SHA256 hash with:
 
-   ```
+```
 shasum -a 256 glibModified.zip
-   ```
+```
    
 Once you have your glibModified.zip and the optional SHA256 hash, it's time to create your custom Homebrew formula for glib:
 

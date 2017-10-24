@@ -281,7 +281,7 @@ if test $have_win32 = true; then
 fi
 
 AC_SUBST(WIN32_LIBS)
-AM_CONDITIONAL(HAVE_WIN32, $have_win32) 
+AM_CONDITIONAL(HAVE_WIN32, $have_win32)
 
 # Ensure MSVC-compatible struct packing convention is used when
 # compiling for Win32 with gcc.
@@ -326,7 +326,7 @@ AC_MSG_CHECKING([for CoreText availability])
 pango_save_libs=$LIBS
 LIBS="$LIBS -framework ApplicationServices"
 AC_TRY_LINK([#include <Carbon/Carbon.h>], [CTGetCoreTextVersion ();],
-[have_core_text=yes], [have_core_text=no])
+[have_core_text=no], [have_core_text=no])
 LIBS=$pango_save_libs
 
 if test "$have_core_text" = "yes"; then
@@ -411,17 +411,17 @@ if $have_cairo ; then
     if $have_cairo_png; then
       AC_DEFINE(HAVE_CAIRO_PNG, 1, [Whether Cairo has PNG support])
     fi
-  
+
     PKG_CHECK_EXISTS(cairo-ps >= $cairo_required, have_cairo_ps=true, :)
     if $have_cairo_ps; then
       AC_DEFINE(HAVE_CAIRO_PS, 1, [Whether Cairo has PS support])
     fi
-  
+
     PKG_CHECK_EXISTS(cairo-pdf >= $cairo_required, have_cairo_pdf=true, :)
     if $have_cairo_pdf; then
       AC_DEFINE(HAVE_CAIRO_PDF, 1, [Whether Cairo has PDF support])
     fi
-  
+
     PKG_CHECK_EXISTS(cairo-xlib >= $cairo_required, have_cairo_xlib=true, :)
     if $have_cairo_xlib; then
       AC_DEFINE(HAVE_CAIRO_XLIB, 1, [Whether Cairo has Xlib support])
@@ -461,7 +461,7 @@ GLIB_MODULES="glib-2.0 >= $GLIB_REQUIRED_VERSION gobject-2.0 gmodule-no-export-2
 
 PKG_CHECK_MODULES(GLIB, $GLIB_MODULES, :,
   AC_MSG_ERROR([
-*** Glib $GLIB_REQUIRED_VERSION or better is required. The latest version of 
+*** Glib $GLIB_REQUIRED_VERSION or better is required. The latest version of
 *** Glib is always available from ftp://ftp.gtk.org/.]))
 
 # Setup GLIB_MKENUMS to use glib-mkenums even if GLib is uninstalled.
@@ -582,7 +582,7 @@ dnl **************************
 
 if $have_cairo ; then : ; else
    if  test x$enable_gtk_doc = xyes ; then
-      AC_MSG_WARN([Cairo not present, disabling doc building])      
+      AC_MSG_WARN([Cairo not present, disabling doc building])
       enable_gtk_doc=no
    fi
 fi
@@ -699,10 +699,10 @@ dnl ******************************************************
 dnl * See whether to include shared library dependencies *
 dnl ******************************************************
 
-AC_ARG_ENABLE(explicit-deps, 
+AC_ARG_ENABLE(explicit-deps,
               AC_HELP_STRING([--enable-explicit-deps=@<:@no/auto/yes@:>@],
                              [use explicit dependencies in .pc files @<:@default=auto@:>@]),
-              enable_explicit_deps="$enableval", 
+              enable_explicit_deps="$enableval",
               enable_explicit_deps=auto)
 
 AC_MSG_CHECKING([Whether to write dependencies into .pc files])
@@ -711,12 +711,12 @@ case $enable_explicit_deps in
     export SED
     deplibs_check_method=`(./libtool --config; echo 'eval echo \"$deplibs_check_method\"') | sh`
     if test "x$deplibs_check_method" '!=' xpass_all || test "x$enable_static" = xyes ; then
-      enable_explicit_deps=yes  
+      enable_explicit_deps=yes
     else
-      enable_explicit_deps=no  
+      enable_explicit_deps=no
     fi
   ;;
-  yes|no) 
+  yes|no)
   ;;
   *) AC_MSG_ERROR([Value given to --enable-explicit-deps must be one of yes, no or auto])
   ;;
@@ -762,7 +762,7 @@ extern void         _pango_${module_c}_script_engine_exit (void);
 extern PangoEngine *_pango_${module_c}_script_engine_create (const char *id);
 
 EOTEXT
-done 
+done
 
 IFS="$pango_save_ifs"
 ],[
